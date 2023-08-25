@@ -343,6 +343,17 @@ loop:
 			p = q;
 			goto oper;
 		}
+	/* WTM Change 3 - 0xNNNN hex format support */
+	} else if ((p[0] == '0') && (p[1] == 'x')) {
+		p+=2;
+		q = getpnum(p, 16, &n);
+		if (q == NULL) {
+			p--;
+			ec = EXPR_E_HEX;
+			goto esyntax;
+		}
+		p = q;
+		goto oper;
 	} else if (isdigit(*p)) {
 		if (last == 'n')
 			goto end;
