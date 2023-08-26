@@ -255,6 +255,7 @@ loop:
 		/* WTM Change 2 - error on illegal command */
 		case 'x': 				
 				eprint(_("illegal command\n"));
+				eprcol(s_pline, s_pline_ep);
 			  	newerr();
 			  	break;
 		default:
