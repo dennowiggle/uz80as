@@ -363,6 +363,8 @@ static const char *genstr(const char *p, enum strmode mode)
 			case 'b': c = '\b'; break;
 			case 't': c = '\t'; break;
 			case 'f': c = '\f'; break;
+			/* WTM Change 6 - Allow a \0 inside quotes. Translate to byte 0 */
+			case '0': c = 0; break;
 			case '\\': c = '\\'; break;
 			case '\"': c = '\"'; break;
 			default:
