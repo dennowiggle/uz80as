@@ -80,6 +80,7 @@ static const struct matchtab s_matchtab_z80[] = {
 	{ "LD (ca),b", "d0.70c2.d1.", 3, 0, "ii" },
 	{ "LD (ca),a", "d0.36.d1.d2.", 3, 0, "iie8" },
 	{ "LD (a),A", "32.e0", 3, 0 },
+	{ "LD (a),b", "xx.00", 3, 0 }, /* WTM Change 2 - error on illegal command */
 	{ "LD (a),HL", "22.e0", 3, 0 },
 	{ "LD (a),d", "ED.43f1.e0", 3, 0 },
 	{ "LD (a),e", "d1.22.e0", 3, 0 },
