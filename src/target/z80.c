@@ -44,6 +44,7 @@
  * 	k: possible value to IM
  * 	m: check arithmetic used with A register
  * 	n: check arithmetic used without A register
+ *  x: mark as an illegal command	* WTM Change 2 - error on illegal command *
  */
 
 static const struct matchtab s_matchtab_z80[] = {
@@ -57,6 +58,7 @@ static const struct matchtab s_matchtab_z80[] = {
 	{ "LD A,(BC)", "0A.", 3, 0 },
 	{ "LD A,(DE)", "1A.", 3, 0 },
 	{ "LD A,(a)", "3A.e0", 3, 0 },
+	{ "LD b,(a)", "xx.00", 3, 0 }, /* WTM Change 2 - error on illegal command */
 	{ "LD b,a", "06b0.d1.", 3, 0, "e8" },
 	{ "LD p,a", "DD.06b0.d1.", 1, 1, "e8" },
 	{ "LD q,a", "FD.06b0.d1.", 1, 1, "e8" },

@@ -252,6 +252,11 @@ loop:
 		case 'e': genb(vs[i] & 0xff, s_pline_ep);
 			  genb(vs[i] >> 8, s_pline_ep);
 			  break;
+		/* WTM Change 2 - error on illegal command */
+		case 'x': 				
+				eprint(_("illegal command\n"));
+			  	newerr();
+			  	break;
 		default:
 			if (s_target->genf(&b, *p, vs, i, savepc) == -1) { 
 				eprogname();
