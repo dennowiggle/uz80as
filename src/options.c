@@ -19,6 +19,8 @@ int s_listing = 1;	/* If we generate the listing file or not. */
 int s_extended_op = 0;	/* Allow extended instruction syntax. */
 int s_undocumented_op = 0;  /* Allow undocumented instructions. */
 int s_mem_fillval = 0;	/* Default value to fill the 64K memory. */
+/* WTM Change 7 option for .labels */
+int s_dot_label = 0; ; /* Allow dot label names */
 
 /* Command line macro definitions. */
 struct predef *s_predefs;

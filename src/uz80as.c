@@ -937,7 +937,8 @@ loop:
 		}
 		cp++;
 		goto start;
-	} else if (*cp == '.') {
+	/* WTM Change 7 option for .labels */
+	} else if (*cp == '.' && (s_dot_label?!col0:1)) {
 		s_pline_ep = cp;
 		cp++;
 		q = parse_direc(cp);
@@ -966,7 +967,8 @@ loop:
 			cp = d_null(q);
 		}
 	} else if (isidc0(*cp)) {
-		if (col0 && *cp != '.') {
+		/* WTM Change 7 option for .labels */
+		if (col0 && (s_dot_label?1:(*cp != '.') ) ) {
 			/* take label */
 			s_pline_ep = cp;
 			q = cp;

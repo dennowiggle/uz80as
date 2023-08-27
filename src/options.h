@@ -24,6 +24,8 @@ extern int s_listing;
 extern int s_extended_op;
 extern int s_undocumented_op;
 extern int s_mem_fillval;
+/* WTM Change 7 option for .labels */
+extern int s_dot_label;
 extern struct predef *s_predefs;
 
 void predefine(const char *name);

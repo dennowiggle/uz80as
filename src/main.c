@@ -96,6 +96,7 @@ static void print_help(const char *argv0)
 "  -h, --help           Display this help and exit.\n"
 "  -v, --version        Output version information and exit.\n"
 "  -l, --license        Display the license text and exit.\n"
+"  -a, --dot-labels     Use labels starting with a dot.\n"   /* WTM Change 7 option for .labels */
 "  -d, --define=MACRO   Define a macro.\n"
 "  -f, --fill=n         Fill memory with value n.\n"
 "  -q, --quiet          Do not generate the listing file.\n"
@@ -217,6 +218,8 @@ int main(int argc, char *argv[])
 		{ "undocumented", 0, 'u' },
 		{ "version", 0, 'v' },
 		{ "print-table", 1, 0 },
+		/* WTM Change 7 option for .labels */
+		{ "dot-labels", 0, 'a'},
 		{ NULL, 0, 0 },
 	};
 
@@ -247,6 +250,10 @@ int main(int argc, char *argv[])
 			break;
 		case 'f':
 			parse_fill_byte(ngo.optarg);
+			break;
+		/* WTM Change 7 option for .labels */
+		case 'a':
+			s_dot_label = 1;
 			break;
 		case 'q':
 			s_listing = 0;
