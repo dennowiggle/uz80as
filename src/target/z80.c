@@ -10,8 +10,6 @@
 #include "options.h"
 #include "uz80as.h"
 #include <stddef.h>
-/* WTM Change 1 - warn if relative jump instruction out of range */
-#include "stdlib.h"
 
 /* pat:
  * 	a: expr
@@ -271,8 +269,8 @@ static int gen_z80(int *eb, char p, const int *vs, int i, int savepc)
 	case 'g': b |= (vs[i] << 6); break;
 	case 'i': b = (vs[i] - savepc - 2);
 		  /* WTM Change 1 - warn if relative jump instruction out of range */
-		  if ((s_pass > 0) && abs(b) > 127){
-			  eprint(_("relative jump of %d is out of range > 127 postions\n"),
+		  if ((s_pass > 0) && (b > 127 || b < -128)){
+			  eprint(_("relative jump of %d is out of range\n"),
 			    b);
 		 	  eprcol(s_pline, s_pline_ep);
 			  newerr();
