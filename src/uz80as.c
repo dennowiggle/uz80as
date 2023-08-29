@@ -741,7 +741,7 @@ dnlst:
 		if (*p == quote) {
 			p++;
 		} else {
-			wprint(_("no terminating quote1\n"));
+			wprint(_("no terminating quote\n"));
 			eprcol(s_pline, p);
 		}
 	} else {
