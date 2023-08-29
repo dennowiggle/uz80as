@@ -707,6 +707,7 @@ void pp_reset(void)
 {
 	int i;
 	struct macro *nod, *cur;
+	char *cur_text;  /* WTM Change 8 */
 
 	s_nmacs = 0;
 	s_nifs = 0;
@@ -715,9 +716,14 @@ void pp_reset(void)
 	for (i = 0; i < MACTABSZ; i++) {
 		nod = s_mactab[i];
 		while (nod != NULL) {
+			/* WTM Change 8 */
+			cur_text = nod->text;
 			cur = nod;
 			nod = nod->next;
-			free(cur->text);
+			/* WTM Change 8 - When using macro's there was an error on running uz80as. */
+			/* Error was "free(): double free detected in tcache 2" */
+			// free(cur->text);
+			free(cur_text);
 			free(cur);
 		}
 	}
