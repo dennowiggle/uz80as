@@ -354,7 +354,7 @@ static const char *genstr(const char *p, enum strmode mode)
 	int c;
 	int quote = *p;  /* WTM Change 9 */
 
-	/* WTM Change 9 - Allow .ds and .dw to use single quotes for surrounding text. */
+	/* WTM Change 9 - Allow .db and .dw to use single quotes for surrounding text. */
 	for (p = p + 1; *p != '\0' && *p != quote; p++) {
 		c = *p;
 		if (c == '\\') {
@@ -734,7 +734,7 @@ static const char *d_lst(const char *p, int w)
 
 	linepc = s_pc;
 dnlst: 
-    /* WTM Change 9 - Allow .ds and .dw to use single quotes for surrounding text. */
+    /* WTM Change 9 - Allow .db and .dw to use single quotes for surrounding text. */
 	if (*p == '\"' || *p == '\'') {
 		quote = *p;
 		p = genstr(p, mode);
