@@ -352,8 +352,10 @@ enum strmode {
 static const char *genstr(const char *p, enum strmode mode)
 {
 	int c;
+	int quote = *p;  /* WTM Change 9 */
 
-	for (p = p + 1; *p != '\0' && *p != '\"'; p++) {
+	/* WTM Change 9 - Allow .ds and .dw to use single quotes for surrounding text. */
+	for (p = p + 1; *p != '\0' && *p != quote; p++) {
 		c = *p;
 		if (c == '\\') {
 			p++;
@@ -721,7 +723,7 @@ static const char *d_org(const char *p)
 static const char *d_lst(const char *p, int w)
 {
 	enum strmode mode;
-	int n, linepc;
+	int n, linepc, quote;	/* WTM Change 9*/
 	enum expr_ecode ecode;
 	const char *ep, *eps;
 
@@ -732,12 +734,14 @@ static const char *d_lst(const char *p, int w)
 
 	linepc = s_pc;
 dnlst: 
-	if (*p == '\"') {
+    /* WTM Change 9 - Allow .ds and .dw to use single quotes for surrounding text. */
+	if (*p == '\"' || *p == '\'') {
+		quote = *p;
 		p = genstr(p, mode);
-		if (*p == '\"') {
+		if (*p == quote) {
 			p++;
 		} else {
-			wprint(_("no terminating quote\n"));
+			wprint(_("no terminating quote1\n"));
 			eprcol(s_pline, p);
 		}
 	} else {
