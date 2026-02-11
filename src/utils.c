@@ -37,7 +37,9 @@ const char *skipws(const char *p)
 /* Return 1 if *p is a valid start character for an identifier. */
 int isidc0(char c)
 {
-	return (c == '_') || isalpha(c);
+	/* WTM Change 7 option for .labels */
+	return (c == '_') || (c == '.') || isalpha(c);
+
 }
 
 /* 
